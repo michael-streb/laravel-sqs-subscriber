@@ -97,10 +97,11 @@ return [
 
         ...
 ```
-note that in the new connection you will use `sqs-distributed` as driver value. To keep the consistency
+Note that in the new connection you will use `sqs-distributed` as driver value. To keep the consistency
 we also name the connection as `sqs-distributed` as the name of it's driver. You can also
 specify the default queue inside `queue` key that will be used when you don't specify particular
-queue to listen to.
+queue to listen to. And if your message usees different key names for topic and body, you can specify
+it using `topic_name` and `body_name` keys.
 
 ## Map Topic to Handler Class in `config/sqs-topic-map.php`
 
