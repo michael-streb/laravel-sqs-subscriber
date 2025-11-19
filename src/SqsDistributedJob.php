@@ -7,9 +7,10 @@ class SqsDistributedJob extends SqsJob
 {
     public function fire()
     {
+        $bodyName = $this->getBodyName();
         $payload = $this->payload();
         $listener = app()->make($payload['job']);
-        $listener->handle($this->isUseTopic() ? $payload['message'] : $payload);
+        $listener->handle($this->isUseTopic() ? $payload[$bodyName] : $payload);
 
         if (! $this->isDeletedOrReleased()) {
             if ($this->getMaxReceiveMessage() === 1) {
@@ -63,6 +64,11 @@ class SqsDistributedJob extends SqsJob
     private function getTopicName()
     {
         return config(sprintf('queue.connections.%s.topic_name', $this->getConnectionName()));
+    }
+
+    private function getBodyName()
+    {
+        return config(sprintf('queue.connections.%s.body_name', $this->getConnectionName()));
     }
 
     private function getQueueName()
