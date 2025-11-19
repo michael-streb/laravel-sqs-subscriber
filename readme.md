@@ -20,6 +20,7 @@ AWS_SQS_PREFIX=https://sqs.ap-southeast-1.amazonaws.com/your-account-id
 AWS_SQS_MAX_RECEIVE_MESSAGE=1
 AWS_SQS_DISTRIBUTED_DEFAULT_QUEUE=test-local
 AWS_SQS_DISTRIBUTED_USE_TOPIC=true
+AWS_SQS_DISTRIBUTED_TOPIC_NAME=topic
 ```
 
 ## Troubleshoot
@@ -88,6 +89,7 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY', 'your-secret-key'),
             'prefix' => env('AWS_SQS_PREFIX', 'https://sqs.us-east-1.amazonaws.com/your-account-id'),
             'queue' => env('AWS_SQS_DISTRIBUTED_DEFAULT_QUEUE', 'user-registration'),
+            'topic_name' => env('AWS_SQS_DISTRIBUTED_TOPIC_NAME', 'user-registration'),
             'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
         ],
 
